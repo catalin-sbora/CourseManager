@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CourseManager.DataAccess.Migrations
 {
-    public partial class CreateMigrations : Migration
+    public partial class CreateInitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -72,6 +72,7 @@ namespace CourseManager.DataAccess.Migrations
                     StudentId = table.Column<Guid>(nullable: true),
                     GradeValue = table.Column<double>(nullable: false),
                     Comment = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
                     CourseId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -98,6 +99,7 @@ namespace CourseManager.DataAccess.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     StudentId = table.Column<Guid>(nullable: true),
                     PresenceValue = table.Column<bool>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
                     CourseId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseManager.DataAccess.Migrations
 {
     [DbContext(typeof(CourseManagerDbContext))]
-    [Migration("20200330065540_CreateMigrations")]
-    partial class CreateMigrations
+    [Migration("20200401065806_CreateInitialMigration")]
+    partial class CreateInitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,9 @@ namespace CourseManager.DataAccess.Migrations
                     b.Property<Guid?>("CourseId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<double>("GradeValue")
                         .HasColumnType("float");
 
@@ -78,6 +81,9 @@ namespace CourseManager.DataAccess.Migrations
 
                     b.Property<Guid?>("CourseId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("PresenceValue")
                         .HasColumnType("bit");
