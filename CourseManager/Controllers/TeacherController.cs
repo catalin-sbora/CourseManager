@@ -21,14 +21,41 @@ namespace CourseManager.Controllers
             this.userManager = userManager;
             this.teachersService = teachersService;
         }
-        // GET: Teacher
+       
         public ActionResult Index()
         {
-            var userId = userManager.GetUserId(User);
-            var teacher = teachersService.GetTeacherByUserId(userId);
-            var teacherCourses = teachersService.GetTeacherCourses(userId);
+            try
+            {
+                var userId = userManager.GetUserId(User);
+                var teacher = teachersService.GetTeacherByUserId(userId);
+                var teacherCourses = teachersService.GetTeacherCourses(userId);
 
-            return View(new TeacherCoursesViewModel { Teacher = teacher, Courses = teacherCourses});
+                return View(new TeacherCoursesViewModel { Teacher = teacher, Courses = teacherCourses });
+            }
+            catch (Exception)
+            {
+                return BadRequest("Invalid request received ");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult AddCourse()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddCourse([FromForm]TeacherAddCourseViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var userId = userManager.GetUserId(User);
+            teachersService.AddCourse(userId, model.Name, model.Description);
+            return Redirect(Url.Action("Index", "Teacher"));
+
         }
 
         

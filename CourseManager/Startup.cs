@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CourseManager.DataAccess;
 using CourseManager.ApplicationLogic.Abstractions;
+using CourseManager.ApplicationLogic.Services;
 
 namespace CourseManager
 {
@@ -43,9 +44,11 @@ namespace CourseManager
 
             services.AddScoped<ITeacherRepository, TeacherRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<TeachersService>();
 
             services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddRazorPages()
+                    .AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

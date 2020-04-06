@@ -45,8 +45,23 @@ namespace CourseManager.ApplicationLogic.Services
             }
 
             return courseRepository.GetAll()
-                            .Where(course => course.Teacher.UserId == userIdGuid)
+                            .Where(course => course.Teacher != null && course.Teacher.UserId == userIdGuid)
                             .AsEnumerable();
+        }
+
+        public void AddCourse(string userId, string courseName, string courseDescription)
+        {
+            Guid userIdGuid = Guid.Empty;
+            if (!Guid.TryParse(userId, out userIdGuid))
+            {
+                throw new Exception("Invalid Guid Format");
+            }
+            var teacher = teacherRepository.GetTeacherByUserId(userIdGuid);
+            if (teacher == null)
+            {
+                throw new EntityNotFoundException(userIdGuid);
+            }
+            courseRepository.Add(new Course() { Id = Guid.NewGuid(), Teacher = teacher, Name = courseName, Description = courseDescription });
         }
     }
 }
