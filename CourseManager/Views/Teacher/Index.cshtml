@@ -1,0 +1,12 @@
+﻿@model  CourseManager.Models.Teachers.TeacherCoursesViewModel;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@foreach (var course in Model.Courses)
+{
+    <div>
+        @course.Name
+    </div>
+}

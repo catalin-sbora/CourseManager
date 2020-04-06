@@ -12,7 +12,6 @@ namespace CourseManager.ApplicationLogic.DataModel
         public Teacher Teacher {get; set;}
         public ICollection<Student> Students { get; set; }
         public ICollection<CourseGrade> CourseGrades { get; private set; }
-
         public ICollection<CoursePresence> CoursePresences { get; private set; }
     }
 }

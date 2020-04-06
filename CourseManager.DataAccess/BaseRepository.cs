@@ -8,7 +8,7 @@ namespace CourseManager.DataAccess
 {
     public class BaseRepository<T> : IRepository<T> where T : class, new()
     {
-        private readonly CourseManagerDbContext dbContext;
+        protected readonly CourseManagerDbContext dbContext;
         public BaseRepository(CourseManagerDbContext dbContext)
         {
             this.dbContext = dbContext;
@@ -16,12 +16,14 @@ namespace CourseManager.DataAccess
         public T Add(T itemToAdd)
         {
             var entity = dbContext.Add<T>(itemToAdd);
+            dbContext.SaveChanges();
             return entity.Entity;
         }
 
         public bool Delete(T itemToDelete)
         {
             dbContext.Remove<T>(itemToDelete);
+            dbContext.SaveChanges();
             return true;
         }
 
@@ -34,6 +36,7 @@ namespace CourseManager.DataAccess
         public T Update(T itemToUpdate)
         {
             var entity = dbContext.Update<T>(itemToUpdate);
+            dbContext.SaveChanges();
             return entity.Entity;
         }
     }

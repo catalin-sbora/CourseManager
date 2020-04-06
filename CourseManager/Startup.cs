@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CourseManager.DataAccess;
+using CourseManager.ApplicationLogic.Abstractions;
 
 namespace CourseManager
 {
@@ -39,6 +40,10 @@ namespace CourseManager
                 );
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

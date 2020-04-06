@@ -7,6 +7,6 @@ namespace CourseManager.ApplicationLogic.Abstractions
 {
     public interface ICourseRepository: IRepository<Course>
     {
-        CourseGrade GetStudentGrade(Student student);
+        CourseGrade GetStudentGrade(Guid courseId, Student student);
     }
 }
