@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CourseManager.ApplicationLogic.Exceptions;
 using CourseManager.ApplicationLogic.Services;
 using CourseManager.Models.Teachers;
 using Microsoft.AspNetCore.Authorization;
@@ -30,7 +31,15 @@ namespace CourseManager.Controllers
                 var teacher = teachersService.GetTeacherByUserId(userId);
                 var teacherCourses = teachersService.GetTeacherCourses(userId);
 
+                foreach (var course in teacherCourses)
+                {
+                    course.GetStudentsWithAverageGradeGreaterThan(9.0);
+                }
                 return View(new TeacherCoursesViewModel { Teacher = teacher, Courses = teacherCourses });
+            }
+            catch (EntityNotFoundException)
+            {
+                return NotFound();
             }
             catch (Exception)
             {
@@ -52,9 +61,16 @@ namespace CourseManager.Controllers
                 return BadRequest();
             }
 
-            var userId = userManager.GetUserId(User);
-            teachersService.AddCourse(userId, model.Name, model.Description);
-            return Redirect(Url.Action("Index", "Teacher"));
+            try
+            {
+                var userId = userManager.GetUserId(User);
+                teachersService.AddCourse(userId, model.Name, model.Description);
+                return Redirect(Url.Action("Index", "Teacher"));
+            }
+            catch (EntityNotFoundException)
+            {
+                return NotFound();
+            }
 
         }
 
