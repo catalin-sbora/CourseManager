@@ -31,10 +31,10 @@ namespace CourseManager.Controllers
                 var teacher = teachersService.GetTeacherByUserId(userId);
                 var teacherCourses = teachersService.GetTeacherCourses(userId);
 
-                foreach (var course in teacherCourses)
+               /* foreach (var course in teacherCourses)
                 {
                     course.GetStudentsWithAverageGradeGreaterThan(9.0);
-                }
+                }*/
                 return View(new TeacherCoursesViewModel { Teacher = teacher, Courses = teacherCourses });
             }
             catch (EntityNotFoundException)
