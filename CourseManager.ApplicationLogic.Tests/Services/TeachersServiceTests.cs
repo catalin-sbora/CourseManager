@@ -37,6 +37,7 @@ namespace CourseManager.ApplicationLogic.Tests.Services
             Mock<ICourseRepository> courseRepoMock = new Mock<ICourseRepository>();
             var nonExistingUserId = "7299FFCC-435E-4A6D-99DF-57A4D6FBA747";
             var existingUserId = Guid.Parse("7299FFCC-435E-4A6D-99DF-57A4D6FBA712");
+            
             var teacher = new Teacher { 
                 Id = existingUserId,
                 Email="blabla@mail.com",
@@ -58,5 +59,41 @@ namespace CourseManager.ApplicationLogic.Tests.Services
             });
         }
 
+        [TestMethod]
+        public void GetTeacherByUserId_Returns_UserWhenExists()
+        {
+            Mock<ITeacherRepository> teacherRepoMock = new Mock<ITeacherRepository>();
+            Mock<ICourseRepository> courseRepoMock = new Mock<ICourseRepository>();
+            var nonExistingUserId = "7299FFCC-435E-4A6D-99DF-57A4D6FBA747";
+            var existingUserId = Guid.Parse("7299FFCC-435E-4A6D-99DF-57A4D6FBA712");
+            Exception throwException = null;
+            var teacher = new Teacher
+            {
+                Id = existingUserId,
+                Email = "blabla@mail.com",
+                FirstName = "BlaBla",
+                LastName = "LastBlaBla",
+                PhoneNo = "0039947888474",
+                UserId = existingUserId
+            };
+
+            teacherRepoMock.Setup(teacherRepo => teacherRepo.GetTeacherByUserId(existingUserId))
+                            .Returns(teacher);
+
+            TeachersService teacherService = new TeachersService(teacherRepoMock.Object, courseRepoMock.Object);
+            Teacher user = null; 
+            //act   
+            try
+            {
+                user = teacherService.GetTeacherByUserId(existingUserId.ToString());
+            }
+            catch (Exception e)
+            {
+                throwException = e;
+            }
+            //assert
+            Assert.IsNull(throwException, $"Exception was thrown");
+            Assert.IsNotNull(user);
+        }
     }
 }

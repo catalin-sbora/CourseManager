@@ -28,7 +28,7 @@ namespace CourseManager.ApplicationLogic.Services
             }
 
             var teacher = teacherRepository.GetTeacherByUserId(userIdGuid);
-            if (teacher == null)
+            if (teacher ==null)
             {
                 throw new EntityNotFoundException(userIdGuid);
             }
