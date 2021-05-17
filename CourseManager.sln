@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseManager.ApplicationLo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseManager.DataAccess", "CourseManager.DataAccess\CourseManager.DataAccess.csproj", "{79CC8AA3-0811-4F67-83BD-990A15F2E2F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseManager.ApplicationLogic.Tests", "CourseManager.ApplicationLogic.Tests\CourseManager.ApplicationLogic.Tests.csproj", "{4BB16006-07F3-4378-B852-5E211D44A775}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseManager.ApplicationLogic.Tests", "CourseManager.ApplicationLogic.Tests\CourseManager.ApplicationLogic.Tests.csproj", "{4BB16006-07F3-4378-B852-5E211D44A775}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseManager.ApplicationLogic.TestsOne", "CourseManager.ApplicationLogic.TestsOne\CourseManager.ApplicationLogic.TestsOne.csproj", "{598BFD57-B25A-4FAC-ACA3-D3F98D5FA529}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseManager.AutomatedTests", "CourseManager.AutomatedTests\CourseManager.AutomatedTests.csproj", "{D7ED7B87-CE5F-4B4C-970E-48383DA38164}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{4BB16006-07F3-4378-B852-5E211D44A775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BB16006-07F3-4378-B852-5E211D44A775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BB16006-07F3-4378-B852-5E211D44A775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{598BFD57-B25A-4FAC-ACA3-D3F98D5FA529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{598BFD57-B25A-4FAC-ACA3-D3F98D5FA529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{598BFD57-B25A-4FAC-ACA3-D3F98D5FA529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{598BFD57-B25A-4FAC-ACA3-D3F98D5FA529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7ED7B87-CE5F-4B4C-970E-48383DA38164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7ED7B87-CE5F-4B4C-970E-48383DA38164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7ED7B87-CE5F-4B4C-970E-48383DA38164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7ED7B87-CE5F-4B4C-970E-48383DA38164}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
